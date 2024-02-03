@@ -30,9 +30,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/style.css",
+              "src/assets/css/vendor/jquery-ui.theme.css",
+              "src/assets/fonts/simple-line-icons.css",
+              "src/assets/css/vendor/validation-engine.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {

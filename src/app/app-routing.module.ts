@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BasicComponent } from './basic/basic.component';
+import { CategoryComponent } from './category/category.component';
+import { HomeComponent } from './home/home.component';
+import { ProductComponent } from './product/product.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'category', component: CategoryComponent },
+  { path: 'category/:categoryId', component: CategoryComponent },
+  { path: 'category/:categoryId/:subcategoryId', component: CategoryComponent },
+  { path: 'basicPage', component: BasicComponent },
+  { path: 'product/:productId', component: ProductComponent },
+  //{ path: 'error', component: ErrorHandlerComponent },
+  { path: '**', redirectTo: '/error', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
