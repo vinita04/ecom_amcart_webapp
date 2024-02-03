@@ -1,0 +1,78 @@
+@import "../../assets/css/bootstrap.css";
+
+@import "../../assets/css/vendor/validation-engine.css";
+
+@import "../../assets/css/vendor/jquery-ui.theme.css";
+@import "../../assets/css/style.css";
+@import "../../assets/fonts/simple-line-icons.css";
+@import "../../assets/fonts/elegant-icons.css";
+@import "../../assets/fonts/simple-line-icons.css";
+
+
+#productImg {
+  max-height: 200px;
+  width: auto;
+  object-fit: contain;
+}
+.colour-colorDisplay {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  border-color: black;
+}
+
+.wg-title {
+  margin: 0 0 5px;
+}
+label {
+  display: inline-flex;
+}
+.brand-num {
+  color: #94969f;
+  font-size: 11px;
+  margin-left: 1px;
+}
+
+.common-checkboxIndicator {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #c3c2c9;
+  background: #fff;
+  border-radius: 2px;
+}
+.custom-control-input {
+  margin: 0 10px 0 0 !important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #c3c2c9;
+  background: #fff;
+  border-radius: 2px;
+}
+.vertical-filters-header {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  clear: both;
+  color: #282c3f;
+  display: block;
+}
+h6 {
+  font-size: 15px;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+}
+.card-text {
+  font-weight: 500;
+}
