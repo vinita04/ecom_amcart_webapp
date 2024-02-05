@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +9,12 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
 import { BasicComponent } from './basic/basic.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './services/keyCloak.service';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -16,15 +22,27 @@ import { BasicComponent } from './basic/basic.component';
     CategoryComponent,
     ProductComponent,
     HomeComponent,
-    BasicComponent
+    BasicComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    KeycloakAngularModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

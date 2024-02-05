@@ -34,10 +34,9 @@
               "src/assets/css/bootstrap.css",
               "src/assets/css/style.css",
               "src/assets/css/vendor/jquery-ui.theme.css",
-              "src/assets/fonts/simple-line-icons.css",
-              "src/assets/css/vendor/validation-engine.css"
+              "src/assets/fonts/simple-line-icons.css"
             ],
-            "scripts": [
+             "scripts": [
             ]
           },
           "configurations": {
@@ -108,3 +107,23 @@
     }
   }
 }
+
+            //   "src/assets/js/modernizr-2.6.2.min.js",
+            //   "src/assets/js/jquery-1.11.0.min.js",
+            //   "src/assets/js/jquery-ui-1.10.4.custom.min.js",
+            //   "src/assets/js/bootstrap.min.js",
+            //   "src/assets/js/jquery.bxslider.min.js",
+            //   "src/assets/js/jquery-accessibleMegaMenu.js",
+            //   "src/assets/js/jquery.validationEngine.js",
+            //   "src/assets/js/jquery.validationEngine-en.js",
+            //   "src/assets/plugins/responsiveslides/responsiveslides.min.js",
+            //   "src/assets/js/fastclick.js",
+            //   "src/assets/js/plugins.js",
+            //   "src/assets/js/scripts.js"
+            // ,
+            //   "src/assets/css/vendor/validation-engine.css",
+            //   "src/assets/fonts/elegant-icons.css",
+            //   "src/assets/plugins/jquery-ui/jquery-ui.structure.min.css",
+            //   "src/assets/css/documenter_style.css",
+            //   "src/assets/css/bootstrap-responsive.css",
+            //   "src/assets/js/google-code-prettify/prettify.css"
