@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
-import { BasicComponent } from './basic/basic.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './services/keyCloak.service';
 import { CommonModule } from '@angular/common';
@@ -22,7 +21,6 @@ import { FooterComponent } from './footer/footer.component';
     CategoryComponent,
     ProductComponent,
     HomeComponent,
-    BasicComponent,
     HeaderComponent,
     FooterComponent
   ],
