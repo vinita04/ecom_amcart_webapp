@@ -1,0 +1,35 @@
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: amcart-webapp-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: amcart-webapp
+  ports:
+    - port: 4200
+      targetPort: 4200
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amcart-webapp-deployment
+spec:
+  selector:
+    matchLabels:
+      app: amcart-webapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: amcart-webapp
+    spec:
+      containers:
+        - name: amcart-webapp
+          image:  us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4200
