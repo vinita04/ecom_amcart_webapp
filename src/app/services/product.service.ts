@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/products';
+  private apiUrl = environment.searchServiceUrl;
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all?number=15`);
+    return this.http.get<any[]>(`${this.apiUrl}/search?number=15`);
   }
   getFacets(searchValue?: string, categoryId?: string, subcategoryId?: string, facetCategories?: any[]): Observable<any[]> {
     let url = `${this.apiUrl}/facets?text=`;
