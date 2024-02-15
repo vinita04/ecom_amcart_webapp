@@ -97,6 +97,7 @@ export class CategoryComponent implements OnInit {
     }
     return false;
   }
+
   onChangeHandlerAutoComplete(event: any): void {
     this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
       this.suggestions = suggestions;
