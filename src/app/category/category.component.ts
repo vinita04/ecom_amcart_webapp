@@ -63,7 +63,6 @@ export class CategoryComponent implements OnInit {
 
   }
 
-
   searchByText(searchData: FormControl): void {
     this.products = [];
     //this.facets = [];
