@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: amcart-webapp
-          image:  us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1
+          image: us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1
           imagePullPolicy: Always
           ports:
-            - containerPort: 4200
+          - containerPort: 4200
