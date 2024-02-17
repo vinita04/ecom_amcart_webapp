@@ -11,5 +11,5 @@ const keycloakConfig = {
 export const environment = {
     production: false,
     keycloakConfig,
-    searchServiceUrl:'http://34.31.101.134:8081/products'
+    searchServiceUrl:'http://34.171.119.184:8081/products'
 }
