@@ -6,7 +6,7 @@ export function initializeKeycloak(
   return () =>
     keycloak.init({
       config: {
-        url: 'http://keycloakservice:8080',
+        url: 'http://34.71.24.0:8080',
         realm: 'myrealm',
         clientId: 'myclient',
       },
