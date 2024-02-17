@@ -14,8 +14,8 @@ steps:
     - run
     - --filename=./manifest/
     - --image=us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1
-    - --location=us-central1
-    - --cluster=amcart-cluster
+    - --location=us-central1-c
+    - --cluster=my-first-cluster-1
 images:
 - 'us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1'
 options:
