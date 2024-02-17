@@ -1,6 +1,4 @@
 
-
-
 // Add here your keycloak setup infos
 const keycloakConfig = {
   url: 'http://35.225.49.73',
@@ -12,5 +10,5 @@ const keycloakConfig = {
 export const environment = {
     production: true,
     keycloakConfig,
-    searchServiceUrl:'https://backend.amcart.ml'
+    searchServiceUrl:''
 }
