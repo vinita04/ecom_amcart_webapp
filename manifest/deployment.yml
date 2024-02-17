@@ -33,3 +33,10 @@ spec:
           imagePullPolicy: Always
           ports:
           - containerPort: 4200
+          resources:
+            requests:
+              memory: "1Gi"  # Request 64 MiB of memory
+              cpu: "250m"      # Request 250 milliCPU (0.25 CPU core)
+            limits:
+              memory: "1Gi"  # Limit memory usage to 128 MiB
+              cpu: "500m"
