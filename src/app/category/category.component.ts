@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
 
@@ -11,8 +11,8 @@ import { ProductService } from '../services/product.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private productService: ProductService,  private route: ActivatedRoute,
-    private categoryService: CategoryService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute,
+    private categoryService: CategoryService, private router: Router) { }
 
   term = new FormControl('');
   check = new FormControl('');
@@ -26,6 +26,14 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
+    });
+
+    this.productService.getSearchedText().subscribe((term: string) => {
+      this.searchByText(term);
+    });
+
+    this.productService.searchedText$.subscribe((term: string) => {
+      this.searchByText(term);
     });
   }
 
@@ -63,13 +71,12 @@ export class CategoryComponent implements OnInit {
 
   }
 
-  searchByText(searchData: FormControl): void {
+  searchByText(searchedText: string): void {
     this.products = [];
-    //this.facets = [];
-    this.productService.search(searchData.value).subscribe((data: any) => {
+    this.productService.search(searchedText).subscribe((data: any) => {
       this.products = data.products;
     });
-    this.productService.getFacets(searchData.value)
+    this.productService.getFacets(searchedText)
     .subscribe((facets: any) => {
       this.facets = facets;
     });
@@ -91,6 +98,7 @@ export class CategoryComponent implements OnInit {
       this.facets = facets;
     });
   }
+
   onCheckFilterActive(name: string): boolean {
     if (this.facetSearchList.find(facet => facet.value === name)) {
       return true;
@@ -98,9 +106,9 @@ export class CategoryComponent implements OnInit {
     return false;
   }
 
-  onChangeHandlerAutoComplete(event: any): void {
-    this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
-      this.suggestions = suggestions;
-    });
+
+
+  pagination(): void {
+    this.productService.pagination(this.products.length);
   }
 }

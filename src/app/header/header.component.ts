@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
+import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +10,15 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(private keycloakService: KeycloakService){
+  constructor(private keycloakService: KeycloakService, private productService: ProductService,
+    private router: Router) {
   }
 
   isLoggedIn: boolean = false;
+  suggestions: string[] = [];
   userName: string = '';
   fullName: string = '';
+  term = new FormControl('');
   ngOnInit(): void {
     if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
     this.keycloakService.isLoggedIn()
@@ -55,7 +61,7 @@ export class HeaderComponent {
        })
        .catch(reason => console.log(reason));
    }
-   private loadProfile(): Promise<any>{
+   private loadProfile(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       if (this.isLoggedIn){
         this.keycloakService.loadUserProfile()
@@ -70,4 +76,16 @@ export class HeaderComponent {
       }
     })
    }
+
+   searchByText(searchedText: FormControl): void {
+    this.productService.searchedText$.next(searchedText.value);
+    this.router.navigate(['/category']);
+  }
+
+  onChangeHandlerAutoComplete(event: any): void {
+    this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
+      this.suggestions = suggestions;
+    });
+  }
+
 }
