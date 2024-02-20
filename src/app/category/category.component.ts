@@ -12,7 +12,8 @@ import { ProductService } from '../services/product.service';
 export class CategoryComponent implements OnInit {
 
   constructor(private productService: ProductService, private route: ActivatedRoute,
-    private categoryService: CategoryService, private router: Router) { }
+    private categoryService: CategoryService) {
+    }
 
   term = new FormControl('');
   check = new FormControl('');
@@ -23,22 +24,17 @@ export class CategoryComponent implements OnInit {
   isChecked: boolean = false;
   categoryId: string = '';
   subcategoryId: string = '';
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
-
-    this.productService.getSearchedText().subscribe((term: string) => {
-      this.searchByText(term);
-    });
-
-    this.productService.searchedText$.subscribe((term: string) => {
-      this.searchByText(term);
-    });
   }
 
   listProducts() : void {
-    if (this.route.snapshot.paramMap.has('categoryId')) {
+    if (this.route.snapshot.paramMap.has('rawQuery')) {
+      this.searchByText(String(this.route.snapshot.paramMap.get('rawQuery')));
+    } else if (this.route.snapshot.paramMap.has('categoryId')) {
       this.categoryId = String(this.route.snapshot.paramMap.get('categoryId'));
       if (this.route.snapshot.paramMap.has('subcategoryId')) {
         this.subcategoryId = String(this.route.snapshot.paramMap.get('subcategoryId'));
@@ -108,7 +104,8 @@ export class CategoryComponent implements OnInit {
 
 
 
-  pagination(): void {
-    this.productService.pagination(this.products.length);
+  pagination(lastProdIndex?: number): void {
+
+    this.productService.pagination(lastProdIndex ? lastProdIndex : this.products.length);
   }
 }

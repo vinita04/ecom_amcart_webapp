@@ -234,6 +234,11 @@
             <div class="required form-group">
               <input type="text" name="search_query" (keypress)="onChangeHandlerAutoComplete($event)" (keyup.enter)="searchByText(term)"
                 placeholder="Search" [formControl]="term" class="placeholder-fix top-search" autocomplete="off">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let option of suggestions" [value]="option" (onSelectionChange)="filterPostList($event)">
+                    {{option.title}}
+                  </mat-option>
+                </mat-autocomplete>
               <button (click)="searchByText(term)"><i class="icon_search field-icon"></i></button>
             </div>
            </div>
@@ -386,12 +391,12 @@
                           <h3 class="sub-nav-title">Jackets</h3>
                           <ul class="sub-nav-group sub-nav-grey">
                              <li><a routerLink="/category/women/Shirts"><span>Shirts</span></a></li>
+                             <li><a routerLink="/category/women/Jeans"><span>Jeans</span></a></li>
+                             <li><a routerLink="/category/women/Dresses"><span>Dresses</span></a></li>
                              <li><a href="category"><span>Jumper & Cardigans</span></a></li>
                              <li><a href="category"><span>Autumn Jackets</span></a></li>
                              <li><a href="category"><span>Winter Jackets</span></a></li>
                              <li><a href="category"><span>Leather Jackets</span></a></li>
-                             <li><a routerLink="/category/women/Jeans"><span>Jeans</span></a></li>
-                             <li><a routerLink="/category/women/Dresses"><span>Dresses</span></a></li>
                           </ul>
                        </div>
                        <div class="col-md-3">

@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'category/:categoryId', component: CategoryComponent },
+  { path: 'category/rawQuery/:rawQuery', component: CategoryComponent },
   { path: 'category/:categoryId/:subcategoryId', component: CategoryComponent },
   { path: 'product/:productId', component: ProductComponent },
   //{ path: 'error', component: ErrorHandlerComponent },

@@ -49,16 +49,14 @@
         <div class="cat-pagination">
           <div class="row">
             <div class="col-sm-6">
-              Items 1 to 15 of 150 total
+              Items 1 to 15 of 45 total
             </div>
             <div class="col-sm-6 text-right">
               <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><i class="arrow_carrot-right"></i></a></li>
+                <li class="active"><a role="button" (click)="pagination()">1</a></li>
+                <li><a role="button" (click)="pagination()">2</a></li>
+                <li><a role="button" (click)="pagination()">3</a></li>
+                <li><a role="button" (click)="pagination()"><i class="arrow_carrot-right"></i></a></li>
               </ul>
             </div>
           </div>
@@ -336,16 +334,14 @@
         <div class="cat-pagination">
           <div class="row">
             <div class="col-sm-6">
-              Items 1 to 15 of 150 total
+              Items 1 to 15 of 45 total
             </div>
             <div class="col-sm-6 text-right">
               <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><i class="arrow_carrot-right"></i></a></li>
+                <li class="active"><a role="button" (click)="pagination(0)">1</a></li>
+                <li><a role="button" (click)="pagination(15)">2</a></li>
+                <li><a role="button" (click)="pagination(30)">3</a></li>
+                <li><a role="button" (click)="pagination()"><i class="arrow_carrot-right"></i></a></li>
               </ul>
             </div>
           </div>

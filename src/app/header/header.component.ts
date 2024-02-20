@@ -48,38 +48,38 @@ export class HeaderComponent {
     this.keycloakService.logout().then(() => this.keycloakService.clearToken());
   }
 
-   private getToken(): Promise<any> {
-    return this.keycloakService.getToken()
-       .then(token => {
-         localStorage.setItem('token', token);
-         this.userName = this.isLoggedIn ? this.keycloakService.getUsername() : '';
-         this.loadProfile().then(user => {
-           window.location.reload();
-         });
-         localStorage.setItem('userName', this.userName);
+  private getToken(): Promise<any> {
+  return this.keycloakService.getToken()
+      .then(token => {
+        localStorage.setItem('token', token);
+        this.userName = this.isLoggedIn ? this.keycloakService.getUsername() : '';
+        this.loadProfile().then(user => {
+          window.location.reload();
+        });
+        localStorage.setItem('userName', this.userName);
 
-       })
-       .catch(reason => console.log(reason));
-   }
-   private loadProfile(): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      if (this.isLoggedIn){
-        this.keycloakService.loadUserProfile()
-        .then(data => {
-          resolve(data);
-          this.fullName = data.firstName + ' ' + data.lastName;
-          localStorage.setItem('fullName', this.fullName);
-        })
-        .catch(error => console.log(error))
-      } else{
-        console.log('user not logged in')
-      }
-    })
-   }
+      })
+      .catch(reason => console.log(reason));
+  }
+  private loadProfile(): Promise<any> {
+  return new Promise<any>((resolve, reject) => {
+    if (this.isLoggedIn){
+      this.keycloakService.loadUserProfile()
+      .then(data => {
+        resolve(data);
+        this.fullName = data.firstName + ' ' + data.lastName;
+        localStorage.setItem('fullName', this.fullName);
+      })
+      .catch(error => console.log(error))
+    } else{
+      console.log('user not logged in')
+    }
+  })
+  }
 
-   searchByText(searchedText: FormControl): void {
-    this.productService.searchedText$.next(searchedText.value);
-    this.router.navigate(['/category']);
+  searchByText(searchedText: FormControl): void {
+    this.router.navigate(['/category/rawQuery', searchedText.value]);
+    this.term.setValue(null);
   }
 
   onChangeHandlerAutoComplete(event: any): void {
