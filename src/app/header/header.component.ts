@@ -19,7 +19,9 @@ export class HeaderComponent {
   userName: string = '';
   fullName: string = '';
   term = new FormControl('');
+  filteredOptions: any;
   ngOnInit(): void {
+
     if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
     this.keycloakService.isLoggedIn()
     .then(result => {
@@ -36,7 +38,10 @@ export class HeaderComponent {
       this.fullName = String(localStorage.getItem('fullName'));
     }
   }
-
+  filterValues(search: string) {
+    return this.suggestions.filter(value=>
+    value.toLowerCase().indexOf(search.toLowerCase()) === 0);
+}
   login() {
     this.keycloakService.login();
   }
@@ -49,7 +54,7 @@ export class HeaderComponent {
   }
 
   private getToken(): Promise<any> {
-  return this.keycloakService.getToken()
+    return this.keycloakService.getToken()
       .then(token => {
         localStorage.setItem('token', token);
         this.userName = this.isLoggedIn ? this.keycloakService.getUsername() : '';
@@ -62,18 +67,18 @@ export class HeaderComponent {
       .catch(reason => console.log(reason));
   }
   private loadProfile(): Promise<any> {
-  return new Promise<any>((resolve, reject) => {
-    if (this.isLoggedIn){
-      this.keycloakService.loadUserProfile()
-      .then(data => {
-        resolve(data);
-        this.fullName = data.firstName + ' ' + data.lastName;
-        localStorage.setItem('fullName', this.fullName);
-      })
-      .catch(error => console.log(error))
-    } else{
-      console.log('user not logged in')
-    }
+    return new Promise<any>((resolve, reject) => {
+      if (this.isLoggedIn) {
+        this.keycloakService.loadUserProfile()
+        .then(data => {
+          resolve(data);
+          this.fullName = data.firstName + ' ' + data.lastName;
+          localStorage.setItem('fullName', this.fullName);
+        })
+        .catch(error => console.log(error))
+      } else{
+        console.log('user not logged in')
+      }
   })
   }
 
@@ -85,6 +90,7 @@ export class HeaderComponent {
   onChangeHandlerAutoComplete(event: any): void {
     this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
       this.suggestions = suggestions;
+      console.log(this.suggestions)
     });
   }
 

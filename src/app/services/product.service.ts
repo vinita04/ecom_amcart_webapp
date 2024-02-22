@@ -14,7 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/search?number=15`);
+    return this.http.get<any[]>(`${this.apiUrl}/search?number=12`);
   }
 
   getFacets(searchValue?: string, categoryId?: string, subcategoryId?: string, facetCategories?: any[]): Observable<any[]> {
@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   search(searchValue?: string, category?: string, subcategoryId?: string, facetCategories?: any[]): Observable<any[]> {
-    let url = `${this.apiUrl}/search?number=15&text=`;
+    let url = `${this.apiUrl}/search?number=12&text=`;
     url = this.getUrlPostfix(url, searchValue, category, subcategoryId, facetCategories);
     return this.http.get<any[]>(url);
   }
@@ -37,8 +37,8 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}/autocomplete?number=10&text=${text}`);
   }
 
-  pagination(fromWhere: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/search?number=15&from=${fromWhere}`);
+  pagination(fromWhere: number, text?: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/search?number=12&text=${text}&from=${fromWhere}`);
   }
 
   getUrlPostfix(url: string, searchValue?: string, categoryId?: string, subcategoryId?: string, facetCategories?: any[]): string {

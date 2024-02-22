@@ -48,15 +48,13 @@
 
         <div class="cat-pagination">
           <div class="row">
-            <div class="col-sm-6">
-              Items 1 to 15 of 45 total
+            <div *ngIf="totalProducts" class="col-sm-6">
+              Items 1 to 12 of {{totalProducts}} total
             </div>
             <div class="col-sm-6 text-right">
               <ul class="pagination">
-                <li class="active"><a role="button" (click)="pagination()">1</a></li>
-                <li><a role="button" (click)="pagination()">2</a></li>
-                <li><a role="button" (click)="pagination()">3</a></li>
-                <li><a role="button" (click)="pagination()"><i class="arrow_carrot-right"></i></a></li>
+                <li [ngClass]="{'active': activePage == i+1}" *ngFor="let item of [].constructor(numOfPages); let i = index"><a role="button" (click)="pagination($event)">{{i+1}}</a></li>
+                <!-- <li><a role="button" (click)="pagination($event)"><i class="arrow_carrot-right"></i></a></li> -->
               </ul>
             </div>
           </div>
@@ -67,14 +65,19 @@
           <div class="tab-pane fade in active" id="pl-grid">
             <div class="products-list">
               <div class="row">
-
                 <div class="row">
                   <div class="col-md-4 col-sm-6 pl-item" *ngFor="let product of products">
                     <div class="card p-2" style="cursor: pointer;"  [routerLink]="['/product', product.productId]">
-                      <img [src]="product.images[0]" id="productImg" alt="{{ product.productName }}">
+                      <img [src]="product.images[0]" id="productImg" alt="{{ product.productName }}" />
                       <div class="card-body p-2">
-                        <h6 class="card-title">{{ product.productName }}</h6>
-                        <p class="card-text">Rs. {{ product.price }}</p>
+                        <p class="pl-price-block">
+                          <span class="pl-price-old"></span>
+                          <span class="pl-price">$ {{ product.price }}</span>
+                        </p>
+                        <p class="pl-name">{{ product.productName }}</p>
+                        <span class="stars-rating"><span class="stars"></span></span>
+                        <!-- <h6 class="card-title">{{ product.productName }}</h6>
+                        <p class="card-text">Rs. {{ product.price }}</p> -->
                       </div>
                     </div>
                   </div>
@@ -333,15 +336,12 @@
 
         <div class="cat-pagination">
           <div class="row">
-            <div class="col-sm-6">
-              Items 1 to 15 of 45 total
+            <div *ngIf="totalProducts" class="col-sm-6">
+              Items 1 to 12 of {{totalProducts}} total
             </div>
             <div class="col-sm-6 text-right">
               <ul class="pagination">
-                <li class="active"><a role="button" (click)="pagination(0)">1</a></li>
-                <li><a role="button" (click)="pagination(15)">2</a></li>
-                <li><a role="button" (click)="pagination(30)">3</a></li>
-                <li><a role="button" (click)="pagination()"><i class="arrow_carrot-right"></i></a></li>
+                <li *ngFor="let item of [].constructor(numOfPages); let i = index" [ngClass]="{'active': activePage == i+1 }" ><a role="button" (click)="pagination($event)">{{i+1}}</a></li>
               </ul>
             </div>
           </div>

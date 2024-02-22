@@ -24,6 +24,9 @@ export class CategoryComponent implements OnInit {
   isChecked: boolean = false;
   categoryId: string = '';
   subcategoryId: string = '';
+  totalProducts: number;
+  numOfPages: number;
+  activePage: number = 1;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -40,15 +43,13 @@ export class CategoryComponent implements OnInit {
         this.subcategoryId = String(this.route.snapshot.paramMap.get('subcategoryId'));
         this.categoryService.getProductByCategoryandSubCategory(this.categoryId, this.subcategoryId)
         .subscribe(data => {
-            this.products = data.products;
-          }
-        );
+          this.populateData(data);
+        });
       } else {
         this.categoryService.getProductByCategory(this.categoryId)
         .subscribe(data => {
-            this.products = data.products;
-          }
-        );
+          this.populateData(data);
+        });
       }
       this.productService.getFacets('', this.categoryId, this.subcategoryId)
       .subscribe((facets: any) => {
@@ -57,20 +58,19 @@ export class CategoryComponent implements OnInit {
     } else {
       this.productService.search()
       .subscribe((data: any) => {
-        this.products = data.products;
+        this.populateData(data);
       });
       this.productService.getFacets()
       .subscribe((facets: any) => {
         this.facets = facets;
       });
     }
-
   }
 
   searchByText(searchedText: string): void {
     this.products = [];
     this.productService.search(searchedText).subscribe((data: any) => {
-      this.products = data.products;
+      this.populateData(data);
     });
     this.productService.getFacets(searchedText)
     .subscribe((facets: any) => {
@@ -87,7 +87,7 @@ export class CategoryComponent implements OnInit {
       this.facetSearchList = this.facetSearchList.filter(facet => facet.value !== value);
     }
     this.productService.search('', this.categoryId, this.subcategoryId, this.facetSearchList).subscribe((data: any) => {
-      this.products = data.products;
+      this.populateData(data);
     });
     this.productService.getFacets('', this.categoryId, this.subcategoryId, this.facetSearchList)
     .subscribe((facets: any) => {
@@ -102,10 +102,17 @@ export class CategoryComponent implements OnInit {
     return false;
   }
 
+  pagination(event): void {
+    this.productService.pagination(Number((event.target.innerText-1)*12), "")
+    .subscribe((data: any) => {
+      this.populateData(data);
+      this.activePage = event.target.innerText;
+    });
+  }
 
-
-  pagination(lastProdIndex?: number): void {
-
-    this.productService.pagination(lastProdIndex ? lastProdIndex : this.products.length);
+  populateData(data: any) {
+    this.products = data.products;
+    this.totalProducts = data.total;
+    this.numOfPages = Math.ceil(this.totalProducts/12);
   }
 }

@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
@@ -13,7 +13,9 @@ import { initializeKeycloak } from './services/keyCloak.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,11 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     ReactiveFormsModule,
     KeycloakAngularModule,
-    CommonModule
+    CommonModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     KeycloakService,
