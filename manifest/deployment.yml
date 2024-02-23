@@ -8,8 +8,8 @@ spec:
   selector:
     app: amcart-webapp
   ports:
-    - port: 4200
-      targetPort: 4200
+    - port: 8080
+      targetPort: 8080
 
 ---
 
@@ -32,7 +32,7 @@ spec:
           image: us-central1-docker.pkg.dev/nagp-amcart/amcart-repo/amcart-webapp:v1
           imagePullPolicy: Always
           ports:
-          - containerPort: 4200
+          - containerPort: 8080
           resources:
             requests:
               memory: "1Gi"  # Request 64 MiB of memory
