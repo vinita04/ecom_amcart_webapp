@@ -6,9 +6,9 @@ export function initializeKeycloak(
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080',
-        realm: 'AMCart',
-        clientId: 'amcart-client',
+        url: environment.keycloakConfig.url,
+        realm: environment.keycloakConfig.realm,
+        clientId: environment.keycloakConfig.clientId,
       },
       loadUserProfileAtStartUp: true,
       initOptions: {
