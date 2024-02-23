@@ -2,5 +2,5 @@ FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 80
 COPY dist .
