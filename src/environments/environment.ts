@@ -11,5 +11,5 @@ const keycloakConfig = {
 export const environment = {
     production: false,
     keycloakConfig,
-    searchServiceUrl:'amcart-static-ip/products'
+    searchServiceUrl:'http://amcart-static-ip:8081/products'
 }
