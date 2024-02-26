@@ -62,7 +62,6 @@ export class HeaderComponent {
           window.location.reload();
         });
         localStorage.setItem('userName', this.userName);
-
       })
       .catch(reason => console.log(reason));
   }
@@ -85,12 +84,12 @@ export class HeaderComponent {
   searchByText(searchedText: FormControl): void {
     this.router.navigate(['/category/rawQuery', searchedText.value]);
     this.term.setValue(null);
+    this.suggestions = [];
   }
 
   onChangeHandlerAutoComplete(event: any): void {
     this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
       this.suggestions = suggestions;
-      console.log(this.suggestions)
     });
   }
 
