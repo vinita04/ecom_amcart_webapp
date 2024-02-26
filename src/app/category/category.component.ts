@@ -27,6 +27,7 @@ export class CategoryComponent implements OnInit {
   totalProducts: number;
   numOfPages: number;
   activePage: number = 1;
+  productToBeShown: number
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -113,6 +114,7 @@ export class CategoryComponent implements OnInit {
   populateData(data: any) {
     this.products = data.products;
     this.totalProducts = data.total;
+    this.productToBeShown = data.total < 12 ? data.total : 12
     this.numOfPages = Math.ceil(this.totalProducts/12);
   }
 }

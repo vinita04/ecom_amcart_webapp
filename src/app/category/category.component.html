@@ -49,7 +49,7 @@
         <div class="cat-pagination">
           <div class="row">
             <div *ngIf="totalProducts" class="col-sm-6">
-              Items 1 to 12 of {{totalProducts}} total
+              Items 1 to {{productToBeShown}} of {{totalProducts}} total
             </div>
             <div class="col-sm-6 text-right">
               <ul class="pagination">
@@ -99,8 +99,8 @@
                       <a href="#" class="plv-w-backside">
                         <img src="../../assets/images/products/thumbs/2.jpg" alt="">
                         <span class="plv-backside">
-                                          <img src="../../assets/images/products/thumbs/1.jpg" alt="">
-                                       </span>
+                          <img src="../../assets/images/products/thumbs/1.jpg" alt="">
+                        </span>
                       </a>
                     </figure>
                   </div>

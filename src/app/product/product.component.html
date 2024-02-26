@@ -1,22 +1,814 @@
-<div class="container">
-    <br>
-    <div class="row justify-content-center" style="display: inline-flex;">
-        <div class="col-md-6" *ngFor="let prod of product?.images">
-            <img [src]="prod" alt="{{ product?.productName }}" id="productImg">
-        </div>
-        <div class="col-md-6 prod">
-            <div>
-                <h2>{{ product?.brand }}</h2>
-                <h4>{{ product?.productName }}</h4>
-                <p>{{ product?.description }}</p>
-                <p>Rs.{{ product?.price }}</p>
-                <div>
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1">
+
+
+  <!-- page body content begin -->
+  <div class="pg-body clearfix">
+    <div class="container clearfix">
+       <div class="row">
+          <div class="container">
+             <div class="col-xs-12 product-top-line">
+                <a [routerLink]="['/category']" class="btn btn-yet-col col-xs-2 back-catalog pull-left">BACK IN CATALOG</a>
+                <div class="pull-right">
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-6 col-lg-7 col-xs-12 product-images">
+             <div class="clearfix zoom-content">
+              <div aria-hidden="true" aria-labelledby="product-added" role="dialog" tabindex="-1" id="product-video-box" class="modal fade" style="display: none;">
+                  <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                         <a aria-hidden="true" data-dismiss="modal" class="modal-close" href="/product-page.html#"><i class="icon_close"></i></a>
+                         <h4 class="modal-title">Product video</h4>
+                      </div>
+                      <div class="modal-body modal-body-info">
+                         <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="./Product-page_files/zTJkgHuYt_8.html" allowfullscreen=""></iframe>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="clearfix big-image product-page">
+
+                   <div style="height:671px;width:598px; position: relative;" class="zoomWrapper"><img id="zoom_03" src="{{product?.images}}" data-zoom-image="images/product_page_gallery/1-big-3x.jpg" alt="" style="position: absolute; height: 671px; width: 598px;"></div>
+
                 </div>
                 <br>
-                <button class="btn btn-primary">Add to Cart</button>
-            </div>
-        </div>
+             </div>
+             <div class="article-info col-xs-12">
+                <div class="for-border-top share-wrapp clearfix">
+                   <span class="h7">SHARE PRODUCT</span>
+                   <ul class="list-inline social-buttons">
+                      <li class="facebook"><a href="/product-page.html#"><i class="icon-social-facebook"></i></a></li>
+                      <li class="tweeter"><a href="/product-page.html#"><i class="icon-social-twitter "></i></a></li>
+                      <li class="dribbble"><a href="/product-page.html#"><i class="icon-social-dribbble"></i></a></li>
+                      <li class="instantgram"><a href="/product-page.html#"><i class="icon-social-dropbox "></i></a></li>
+                   </ul>
+                </div>
+                <div class="for-border-top print-wrapp">
+                   <span class="print"><a href="/product-page.html"><span class="icon_printer-alt"></span>Print</a></span>
+                </div>
+             </div>
+          </div>
+
+          <div class="col-md-6 col-lg-5 col-xs-12 product-info">
+             <div id="zoom-window-container" style="position: relative;"></div>
+             <div class="product-reviews">
+                <h3>{{ product?.productName }}</h3>
+                <span class="stars-rating"><span class="stars"></span></span>
+                <a href="/product-page.html#">20 Reviewer(s)</a><a href="/product-page.html#review-btn">Add Review</a>
+             </div>
+             <img src="../../assets/images/brands/nike.png" alt="#" class="brand">
+             <div class="hr"></div>
+             <div class="price">
+              ${{ product?.price }}
+             </div>
+             <p class="availability col-sm-pull-right col-xs-pull-left">Availability: <span><span class="in-stock"></span>In Stock</span></p>
+             <div class="hr"></div>
+             <p class="data-info">Product Code: <span>{{ product?.productId }}</span></p>
+             <p class="data-info">Product Tags: <span>Clother, Fashion</span></p>
+             <p class="data-info">Category: <span>{{ product?.category }}</span></p>
+             <div class="hr"></div>
+             <p>{{ product?.description }} </p>
+             <div class="col-xs-12 tech-info">
+                <div class="col-sm-4 col-xs-12">
+                   <span>100% {{ product?.facets?.material }}</span>
+                   <span>Color: {{ product?.facets?.color }}</span>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                   <span>Style {{ product?.facets?.style }}</span>
+                   <span>Fit: {{ product?.facets?.fit }}</span>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                   <span>Dry Clean</span>
+                   <span>Machine Wash Warm</span>
+                </div>
+             </div>
+             <div class="hr"></div>
+             <span class="data-info secondary-font-family">SELECT SIZE</span>
+             <div class="size-blocks" >
+                <div class="radio-inline size" *ngFor="let size of product?.facets?.size; index as i"><input type="radio" name="size" value={{i}} id={{i}} ><label for={{i}}>{{size}}</label></div>
+             </div>
+             <div class="hr"></div>
+             <div class="cart_quantity_button clrfix product-count pull-left">
+                <a rel="nofollow" class="btn btn-default btn-minus" href="/product-page.html#" title="Subtract">–</a>
+                <input type="text" disabled="" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" value="1" name="quantity">
+                <a rel="nofollow" class= "btn btn-default btn-plus" href="/product-page.html#" title="Add">+</a>
+             </div>
+             <button class="btn btn-sec-col pull-left add-cart"><i class="icon-bag"></i>&nbsp;&nbsp;ADD TO CART</button>
+             <a href="product-page.html#" class="btn btn-gray"><span class="icon-heart"></span></a>
+             <div class="hr"></div>
+             <div class="product-tabs">
+                <!-- Nav tabs -->
+                <ul role="tablist" class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" role="tab" href="/product-page.html#tab-description">DESCRIPTION</a></li>
+                  <li><a data-toggle="tab" role="tab" href="/product-page.html#tab-additional-info">ADDITIONAL INFO</a></li>
+                  <li><a data-toggle="tab" role="tab" href="/product-page.html#tab-review" id="review-btn">REVIEWS</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                   <div id="tab-description" class="tab-pane active">
+                      <h6>{{product?.brand}}</h6>
+                      <p>{{product?.description}}.</p>
+                      <p>Material: {{ product?.facets?.material }}</p>
+                      <p>Color: {{ product?.facets?.color }},&nbsp; Style: {{product?.facets?.style}}</p>
+                   </div>
+                   <div id="tab-additional-info" class="tab-pane">
+                      <p>Placerat sollicitudin. sit amet magna quam praesent in libero vel turpis pellentesque egestas sit amet vel nunc. Accumsan dolor ullamcorper est vitae sem ornare interdum. Cum sociis natoque penatibus et magnis Hendrerit ut faucibus sit amet, praesent in libero vel turpis Lorem ipsum dolor sit amet, consectetur adipiscing elit sapien ornare tempus venenatis ipsum nec ligula placerat sollicitudin. </p>
+                   </div>
+                   <div id="tab-review" class="tab-pane">
+                      <form action="/product-page.html#">
+                         <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                               <div class="form-group required"><label class="type-text">Name*<input type="text" class="form-control placeholder-fix"></label></div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                               <div class="form-group required"><label class="type-text">Email*<input type="text" class="form-control placeholder-fix"></label></div>
+                            </div>
+                            <div class="col-xs-12">
+                               <div class="you-rating">
+                                  <div class="data-info secondary-font-family">Your Rating</div>
+                                  <a href="/product-page.html#"><span class="stars-rating stars-1"><span class="stars"></span></span></a>
+                                  <a href="/product-page.html#"><span class="stars-rating stars-2"><span class="stars"></span></span></a>
+                                  <a href="/product-page.html#"><span class="stars-rating stars-3"><span class="stars"></span></span></a>
+                                  <a href="/product-page.html#"><span class="stars-rating stars-4"><span class="stars"></span></span></a>
+                                  <a href="/product-page.html#"><span class="stars-rating stars-5"><span class="stars"></span></span></a>
+                               </div>
+                               <div class="data-info secondary-font-family">Your Review</div>
+                               <div class="required form-group">
+                                  <textarea class="form-control placeholder-fix" rows="4"></textarea>
+                               </div>
+                               <button type="submit" class="btn btn-lg btn-sec-col col-xs-12">SUBMIT REVIEW</button>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
     </div>
-</div>
+    <section>
+       <div class="container best-product">
+          <div class="col-xs-12"><h6>RELATED PRODUCTS</h6></div>
+          <div class="gap-70"></div>
+          <div class="products-list pl-carousel">
+             <ul class="pl-pages">
+                <li class="active">
+                   <div class="row">
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                               <a href="product-page.html">
+                                  <img src="../../assets/images/products/thumbs/1.jpg" alt="">
+                               </a>
+                               <label class="pl-badge">NEW</label>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old">$ 950.00</span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating stars-4"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/1.jpg" alt="">
+                                  </span>
+                               </a>
+                               <label class="pl-badge">- 50%</label>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/3.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/4.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/5.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/6.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/7.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/8.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                      </div>
+                   </li>
+                <li>
+                   <div class="row">
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/1.jpg" alt="">
+                                  </span>
+                               </a>
+                               <label class="pl-badge">- 50%</label>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/3.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/4.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/5.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/6.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/7.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                              <a href="product-page.html" class="pl-w-backside">
+                                  <img src="../../assets/images/products/thumbs/8.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old"></span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6 pl-item hidden-xs">
+                            <figure>
+                               <a href="product-page.html">
+                                  <img src="../../assets/images/products/thumbs/1.jpg" alt="">
+                                  <span class="pl-backside">
+                                     <img src="../../assets/images/products/thumbs/2.jpg" alt="">
+                                  </span>
+                               </a>
+                               <label class="pl-badge">NEW</label>
+                               <figcaption>
+                                  <a href="#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag"></i></a>
+                                  <a href="#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a>
+                                  <a href="#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="Compare"><i class="arrow_left-right_alt"></i></a>
+                                  <a href="#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="Add To Wish List"><i class="icon-heart"></i></a>
+                               </figcaption>
+                            </figure>
+                            <div class="pl-caption">
+                               <p class="pl-price-block">
+                                  <span class="pl-price-old">$ 950.00</span>
+                                  <span class="pl-price">$ 900.00</span>
+                               </p>
+                               <p class="pl-name">Pure Cotton Shirt Slim Fit</p>
+                               <span class="stars-rating stars-4"><span class="stars"></span></span>
+                            </div>
+                         </div>
+                      </div>
+                   </li>
+                <li>
+                   <div class="row">
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/2.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/1.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old">$ 950.00</span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating stars-4"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/4.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/5.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                   </div>
+                </li>
+                <li>
+                   <div class="row">
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/6.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/7.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                       <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/3.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 pl-item">
+                         <figure>
+                            <a href="/product-page.html">
+                               <img src="./Product-page_files/8.jpg" alt="">
+                            </a>
+                            <figcaption>
+                               <a href="/product-page.html#" class="pl-button pl-addcart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="icon-bag"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-qview" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="icon-eye"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="arrow_left-right_alt"></i></a>
+                               <a href="/product-page.html#" class="pl-button pl-wishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wish List"><i class="icon-heart"></i></a>
+                            </figcaption>
+                         </figure>
+                         <div class="pl-caption">
+                            <p class="pl-price-block">
+                               <span class="pl-price-old"></span>
+                               <span class="pl-price">$ 900.00</span>
+                            </p>
+                            <p class="pl-name">Lacoste Cotton Shirt Slim Fit</p>
+                            <span class="stars-rating"><span class="stars"></span></span>
+                         </div>
+                      </div>
+                   </div>
+                </li>
+             </ul>
+             <div class="pl-controls">
+                <a href="/product-page.html#" class="pl-ctl-left"></a>
+                <a href="/product-page.html#" class="pl-ctl-right"></a>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <div class="container">
+       <div class="row subscribe">
+          <div class="col-md-6 col-sm-12"><h3><span class="icon-envelope"></span>SUBSCRIBE FOR OUR NEWSLETTER</h3></div>
+          <div class="col-md-6 col-sm-12">
+             <form action="/">
+                <div class="required form-group search col-sm-8 col-xs-12">
+                   <input type="text" class="placeholder-fix" placeholder="Enter your e-mail adress">
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                      <input type="submit" class="btn btn-sec-col" value="SUBSCRIBE">
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+
+
+ </div> <!-- pg-body -->
+
+
+ <!-- common modals begin -->
+
+ <div class="modal fade" id="product-added" tabindex="-1" role="dialog" aria-labelledby="product-added" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+     <div class="modal-content">
+       <div class="modal-header">
+          <a href="/product-page.html#" class="modal-close" data-dismiss="modal" aria-hidden="true"><i class="icon_close"></i></a>
+          <h4 class="modal-title">Item was added to your shopping cart</h4>
+       </div>
+       <div class="modal-body">
+          <div id="wishlist-product-group-modal" class="dropdown-product-list">
+             <div class="dd-product-group" id="pr11">
+                <div class="dd-product-box pull-left">
+                   <a href="/product-page.html#" title="product name">
+                      <img src="./Product-page_files/pr_2-small.jpg" alt="product name">
+                   </a>
+                </div>
+                <div class="dd-product-desc pull-left">
+                   <a class="title">Beautiful Fit Velvet Sweater For Him</a>
+                   <div class="qty">1 x <span class="active">$700.00</span></div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="modal-footer">
+          <div class="row no-gutter">
+             <div class="col-xs-6">
+                <button type="button" class="btn btn-md btn-third-col btn-w100">View Cart</button>
+             </div>
+             <div class="col-xs-6">
+                <button type="button" class="btn btn-md btn-third-col btn-w100" data-dismiss="modal">Continue Shopping</button>
+             </div>
+          </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="modal fade" id="info-box" tabindex="-1" role="dialog" aria-labelledby="product-added" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+     <div class="modal-content">
+       <div class="modal-header">
+          <a href="/product-page.html#" class="modal-close" data-dismiss="modal" aria-hidden="true"><i class="icon_close"></i></a>
+          <h4 class="modal-title">Information</h4>
+       </div>
+       <div class="modal-body modal-body-info">
+          <p>Beautiful Fit Velvet Sweater has been added to comparison list</p>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- common modals end -->
+
+
+
