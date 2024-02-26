@@ -11,5 +11,5 @@ const keycloakConfig = {
 export const environment = {
     production: false,
     keycloakConfig,
-    searchServiceUrl:'http://34.173.76.98:8081/products'
+    searchServiceUrl:'http://searchservice.default.svc.cluster.local/products'
 }
