@@ -27,7 +27,8 @@ export class CategoryComponent implements OnInit {
   totalProducts: number;
   numOfPages: number;
   activePage: number = 1;
-  productToBeShown: number
+  startingIndex: number;
+  endIndex: number;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -82,6 +83,7 @@ export class CategoryComponent implements OnInit {
   searchByFacets(key: string, value: string, event: any): void {
     this.products = [];
     this.isChecked = true;
+    this.activePage = 1;
     if (event.currentTarget.checked && (this.facetSearchList.length === 0 || !this.facetSearchList?.find(facet => facet.value === value))) {
       this.facetSearchList.push({key: key, value: value});
     } else {
@@ -104,17 +106,25 @@ export class CategoryComponent implements OnInit {
   }
 
   pagination(event): void {
-    this.productService.pagination(Number((event.target.innerText-1)*12), "")
+    const searchedString = this.route.snapshot.paramMap.has('rawQuery') ? this.route.snapshot.paramMap.get('rawQuery') : "";
+    this.productService.pagination(Number((event.target.innerText-1)*12), searchedString)
     .subscribe((data: any) => {
-      this.populateData(data);
       this.activePage = event.target.innerText;
+      this.populateData(data);
+    });
+    this.productService.pagination(Number((event.target.innerText-1)*12), searchedString)
+    .subscribe((data: any) => {
+      this.activePage = event.target.innerText;
+      this.populateData(data);
     });
   }
 
   populateData(data: any) {
+    this.startingIndex = 1;
     this.products = data.products;
     this.totalProducts = data.total;
-    this.productToBeShown = data.total < 12 ? data.total : 12
+    this.endIndex = this.endIndex >= data.total || data.total < 12 ? data.total : 12*this.activePage
+    this.startingIndex = this.activePage == 1 ? 1 : (this.activePage-1)*12;
     this.numOfPages = Math.ceil(this.totalProducts/12);
   }
 }

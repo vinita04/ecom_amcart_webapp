@@ -34,7 +34,7 @@ export class ProductService {
   }
 
   autoComplete(text: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/autocomplete?number=10&text=${text}`);
+    return this.http.get<any>(`${this.apiUrl}/autocomplete?number=12&text=${text}`);
   }
 
   pagination(fromWhere: number, text?: string): Observable<any> {
