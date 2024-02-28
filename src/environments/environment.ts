@@ -1,11 +1,10 @@
 
 
-// Add here your keycloak setup infos
+// Add here keycloak setup infos
 const keycloakConfig = {
-  url: 'http://keycloak-service.us.to',
+  url: 'http://34.132.183.149:8080',
   realm: 'AMCart',
-  clientId: 'amcart-client',
-  redirectURI: 'http://34.133.140.191:80'
+  clientId: 'amcart-client'
 };
 
 export const environment = {
