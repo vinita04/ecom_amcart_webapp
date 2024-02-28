@@ -107,12 +107,7 @@ export class CategoryComponent implements OnInit {
 
   pagination(event): void {
     const searchedString = this.route.snapshot.paramMap.has('rawQuery') ? this.route.snapshot.paramMap.get('rawQuery') : "";
-    this.productService.pagination(Number((event.target.innerText-1)*12), searchedString)
-    .subscribe((data: any) => {
-      this.activePage = event.target.innerText;
-      this.populateData(data);
-    });
-    this.productService.pagination(Number((event.target.innerText-1)*12), searchedString)
+    this.productService.pagination(Number((event.target.innerText-1)*12), searchedString, this.categoryId)
     .subscribe((data: any) => {
       this.activePage = event.target.innerText;
       this.populateData(data);
@@ -123,8 +118,8 @@ export class CategoryComponent implements OnInit {
     this.startingIndex = 1;
     this.products = data.products;
     this.totalProducts = data.total;
-    this.endIndex = this.endIndex >= data.total || data.total < 12 ? data.total : 12*this.activePage
     this.startingIndex = this.activePage == 1 ? 1 : (this.activePage-1)*12;
+    this.endIndex = this.endIndex > data.total || data.total < 12*this.activePage ? data.total : 12*this.activePage
     this.numOfPages = Math.ceil(this.totalProducts/12);
   }
 }

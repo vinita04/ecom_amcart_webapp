@@ -37,8 +37,12 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}/autocomplete?number=12&text=${text}`);
   }
 
-  pagination(fromWhere: number, text?: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/search?number=12&text=${text}&from=${fromWhere}`);
+  pagination(fromWhere: number, text?: string, categoryId?: string): Observable<any> {
+    if (categoryId !== undefined) {
+      return this.http.get<any>(`${this.apiUrl}/search?number=12&text=${text}&from=${fromWhere}&categoryPath=${categoryId}`);
+    } else {
+      return this.http.get<any>(`${this.apiUrl}/search?number=12&text=${text}&from=${fromWhere}`);
+    }
   }
 
   getUrlPostfix(url: string, searchValue?: string, categoryId?: string, subcategoryId?: string, facetCategories?: any[]): string {
