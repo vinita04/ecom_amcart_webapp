@@ -87,8 +87,9 @@ export class HeaderComponent {
     this.suggestions = [];
   }
 
-  onChangeHandlerAutoComplete(event: any): void {
-    this.productService.autoComplete(event.target.value).subscribe((suggestions: any) => {
+  onChangeHandlerAutoComplete(): void {
+    const typedString = (<HTMLInputElement>document.getElementById("search_query")).value;
+    this.productService.autoComplete(String(typedString)).subscribe((suggestions: any) => {
       this.suggestions = suggestions;
     });
   }
