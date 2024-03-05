@@ -2,7 +2,7 @@
 
 // Add here keycloak setup infos
 const keycloakConfig = {
-  url: 'http://34.132.183.149:8080',
+  url: 'http://34.70.98.51:8080',
   realm: 'AMCart',
   clientId: 'amcart-client'
 };
